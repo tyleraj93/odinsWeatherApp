@@ -1,1 +1,2 @@
-// Intentionally left blank
+import "./style.css";
+import "./search.js";
