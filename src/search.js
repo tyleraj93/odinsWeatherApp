@@ -1,15 +1,19 @@
-document.getElementById("acceptInput").addEventListener("click", saveInput)
+import { buildDaily } from "./daily"
 
-function saveInput() {
-    var location = document.getElementById("locationInput").value;
-    updateLocation(location);
-}
+const acceptButton = document.getElementById("acceptInput");
+acceptButton.addEventListener("click", getWeather);
 
-async function updateLocation(location) {
+async function getWeather() {
+    let location = document.getElementById("locationInput").value;
+    // Retrieve current weather and build the days display
     try {
-        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=5cd47542065f4defbfc174337241004&q=${location}&aqi=no`, { mode: "cors" });
-        const locationData = await response.json();
-        console.log(locationData);
+        const responseCurrent = await fetch(
+            `http://api.weatherapi.com/v1/current.json?key=5cd47542065f4defbfc174337241004&q=${location}&aqi=no`,
+            { mode: "cors" }
+        );
+        const currentWeatherData = await responseCurrent.json();
+        buildDaily(currentWeatherData);
+        document.getElementById("locationInput").value = "";
     } catch (error) {
         console.error("Error: ", error);
     }
