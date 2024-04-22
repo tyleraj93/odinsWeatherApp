@@ -5,6 +5,7 @@ acceptButton.addEventListener("click", getWeather);
 
 async function getWeather() {
     let location = document.getElementById("locationInput").value;
+    document.getElementById("locationInput").value = "";
     // Retrieve current weather and build the days display
     try {
         const responseCurrent = await fetch(
@@ -13,7 +14,6 @@ async function getWeather() {
         );
         const currentWeatherData = await responseCurrent.json();
         buildDaily(currentWeatherData);
-        document.getElementById("locationInput").value = "";
     } catch (error) {
         console.error("Error: ", error);
     }
