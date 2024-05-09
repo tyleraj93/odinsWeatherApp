@@ -1,4 +1,4 @@
-export default function buildForecast(data) {
+export default function buildForecast(data, unit) {
     const forecastDisplay = document.getElementById("forecast");
 
     if (forecastDisplay.textContent) {
@@ -6,13 +6,13 @@ export default function buildForecast(data) {
     }
 
     let forecastDays = data.forecast.forecastday;
-    for (let i = 1; i < forecastDays.length; i++) {
-        console.log(forecastDays[i]);
-        buildFutureDay(forecastDays[i], forecastDisplay);
+
+    for (const day of forecastDays) {
+        buildFutureDay(day, unit, forecastDisplay);
     }
 }
 
-function buildFutureDay(data, entryPoint) {
+function buildFutureDay(data, unit, entryPoint) {
 
     const dayDisplay = document.createElement("div");
 
@@ -25,11 +25,11 @@ function buildFutureDay(data, entryPoint) {
     dayDisplay.appendChild(date);
 
     const maxTemp = document.createElement("p");
-    maxTemp.textContent = `High: ${data.day.maxtemp_f}\u00B0 f`;
+    maxTemp.textContent = `High: ${data.day["maxtemp_" + unit]}\u00B0 ${unit}`;
     dayDisplay.appendChild(maxTemp);
 
     const minTemp = document.createElement("p");
-    minTemp.textContent = `Low: ${data.day.mintemp_f}\u00B0 f`;
+    minTemp.textContent = `Low: ${data.day["mintemp_" + unit]}\u00B0 ${unit}`;
     dayDisplay.appendChild(minTemp);
 
     entryPoint.appendChild(dayDisplay);
