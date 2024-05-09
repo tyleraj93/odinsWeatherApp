@@ -8,7 +8,12 @@
 <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
 <body>
     <input type="text" id="locationInput" placeholder="Location">
+    <input type="radio" id="fahrenheit" name="temperatureUnit" value="f" checked></button>
+    <label for="fahrenheit">F</label>
+    <input type="radio" id="celsius" name="temperatureUnit" value="c"></button>
+    <label for="celsius">C</label>
     <button id="acceptInput">Search</button>
     <div id="dailyWeather"></div>
+    <div id="forecast"></div>
 </body>
 </html>
