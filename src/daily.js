@@ -11,37 +11,42 @@ export default function buildDaily(data, tempUnit) {
         dailyDisplay.textContent = "";
     }
 
-    const container = document.createElement("div");
+    const dailyContainer = document.createElement("div");
+    dailyContainer.id = "dailyContainer";
+    dailyContainer.classList.add("card")
+
+    const tempContainer = document.createElement("div");
+    tempContainer.id = "tempContainer";
 
     // Create and append daily weather temp using the tempUnit parameter.
     const temp = document.createElement("h1");
     temp.textContent = `${data.current["temp_" + tempUnit]}\u00B0 ${tempUnit}`;
-    container.appendChild(temp);
+    tempContainer.appendChild(temp);
 
     const conditionImg = document.createElement("img");
     conditionImg.src = data.current.condition.icon;
-    container.appendChild(conditionImg);
+    tempContainer.appendChild(conditionImg);
 
-    dailyDisplay.appendChild(container);
+    dailyContainer.appendChild(tempContainer);
 
     const location = document.createElement("h2");
     location.id = "location";
     location.textContent = `${data.location.name}, ${data.location.region}`;
-    dailyDisplay.appendChild(location);
+    dailyContainer.appendChild(location);
 
     const feelsLike = document.createElement("p");
     feelsLike.textContent = `Feels like: ${
         data.current["feelslike_" + tempUnit]
     }\u00B0${tempUnit}`;
-    dailyDisplay.appendChild(feelsLike);
+    dailyContainer.appendChild(feelsLike);
 
     const condition = document.createElement("p");
     condition.textContent = `Condition: ${data.current.condition.text}`;
-    dailyDisplay.appendChild(condition);
+    dailyContainer.appendChild(condition);
 
     const humidity = document.createElement("p");
     humidity.textContent = `Humidity: ${data.current.humidity}%`;
-    dailyDisplay.appendChild(humidity);
+    dailyContainer.appendChild(humidity);
 
     // Create and append daily weather wind using the tempUnit parameter to determine imperial or metric system.
     const wind = document.createElement("p");
@@ -50,5 +55,7 @@ export default function buildDaily(data, tempUnit) {
             ? data.current.wind_mph + " mph"
             : data.current.wind_kph + " kph"
     } ${data.current.wind_dir}`;
-    dailyDisplay.appendChild(wind);
+    dailyContainer.appendChild(wind);
+
+    dailyDisplay.appendChild(dailyContainer);
 }
