@@ -1,1 +1,170 @@
-/* Intentionally left blank */ 
+/* Eric Meyer's Reset CSS v2.0 | 20110126
+http://meyerweb.com/eric/tools/css/reset/
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Start of styling */
+
+:root {
+    --seasalt: #f9f9f9;
+    --carolina-blue: #88adc1;
+    --lapis-lazuli: #166088;
+    --night: #0a0a0a;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 10fr 4fr 1fr;
+    grid-template-areas: 
+        "header header"
+        ". daily"
+        "forecast forecast"
+        "footer footer";
+    background-color: var(--carolina-blue);
+    color: var(--seasalt);
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    padding-left: 2vw;
+    align-items: center;
+    gap: 2vw;
+    background-color: var(--lapis-lazuli);
+    border-bottom: 1px solid var(--night);
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+input {
+    background-color: var(--seasalt);
+    color: var(--night);
+    border: 1px solid var(--night);
+    padding: 5px;
+}
+
+button {
+    background-color: var(--carolina-blue);
+    color: var(--night);
+    padding: 7px;
+    border-radius: 9px;
+}
+
+#dailyWeather {
+    grid-area: daily;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dailyContainer {
+    height: 50%;
+    width: 66%;
+    display: grid;
+    grid-template-rows: auto repeat(5, 1fr) auto;
+    padding: 20px;
+}
+
+#tempContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3vw;
+}
+
+#forecast {
+    grid-area: forecast;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#forecastContainer {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#dayDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.card {
+    border: 1px solid var(--night);
+    background-color: var(--lapis-lazuli);
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr; /* Only one column across */
+        grid-template-rows: auto auto auto; /* Adjust grid rows as necessary */
+        grid-template-areas: 
+            "header"
+            "daily"
+            "forecast"
+            "footer"; /* Include the footer area if you have one */
+    }
+}
