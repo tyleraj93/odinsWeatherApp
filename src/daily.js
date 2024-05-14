@@ -11,10 +11,18 @@ export default function buildDaily(data, tempUnit) {
         dailyDisplay.textContent = "";
     }
 
+    const container = document.createElement("div");
+
     // Create and append daily weather temp using the tempUnit parameter.
     const temp = document.createElement("h1");
     temp.textContent = `${data.current["temp_" + tempUnit]}\u00B0 ${tempUnit}`;
-    dailyDisplay.appendChild(temp);
+    container.appendChild(temp);
+
+    const conditionImg = document.createElement("img");
+    conditionImg.src = data.current.condition.icon;
+    container.appendChild(conditionImg);
+
+    dailyDisplay.appendChild(container);
 
     const location = document.createElement("h2");
     location.id = "location";
@@ -30,10 +38,6 @@ export default function buildDaily(data, tempUnit) {
     const condition = document.createElement("p");
     condition.textContent = `Condition: ${data.current.condition.text}`;
     dailyDisplay.appendChild(condition);
-
-    const conditionImg = document.createElement("img");
-    conditionImg.src = data.current.condition.icon;
-    dailyDisplay.appendChild(conditionImg);
 
     const humidity = document.createElement("p");
     humidity.textContent = `Humidity: ${data.current.humidity}%`;
