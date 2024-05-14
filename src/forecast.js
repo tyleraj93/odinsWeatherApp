@@ -4,6 +4,9 @@ export default function buildForecast(data, unit) {
     // Selects the forecast section.
     const forecastDisplay = document.getElementById("forecast");
 
+    const forecastContainter = document.createElement("div");
+    forecastContainter.id = "forecastContainer";
+
     if (forecastDisplay.textContent) {
         forecastDisplay.textContent = "";
     }
@@ -12,14 +15,18 @@ export default function buildForecast(data, unit) {
 
     // Calls build future day function for each forecast day.
     for (const day of forecastDays) {
-        buildFutureDay(day, unit, forecastDisplay);
+        buildFutureDay(day, unit, forecastContainter);
     }
+
+    forecastDisplay.appendChild(forecastContainter);
 }
 
 // This function builds a forecast day.
 // It takes in the forecast data, unit of measurement, and entry point as arguments.
 function buildFutureDay(data, unit, entryPoint) {
     const dayDisplay = document.createElement("div");
+    dayDisplay.id = "dayDisplay";
+    dayDisplay.classList.add("card");
 
     // Uses slice to display the day of the week without the year.
     const date = document.createElement("p");
