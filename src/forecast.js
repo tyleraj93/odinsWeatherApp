@@ -19,17 +19,16 @@ export default function buildForecast(data, unit) {
 // This function builds a forecast day.
 // It takes in the forecast data, unit of measurement, and entry point as arguments.
 function buildFutureDay(data, unit, entryPoint) {
-
     const dayDisplay = document.createElement("div");
-
-    const conditionImg = document.createElement("img");
-    conditionImg.src = data.day.condition.icon;
-    dayDisplay.appendChild(conditionImg);
 
     // Uses slice to display the day of the week without the year.
     const date = document.createElement("p");
     date.textContent = data.date.slice(5);
     dayDisplay.appendChild(date);
+
+    const conditionImg = document.createElement("img");
+    conditionImg.src = data.day.condition.icon;
+    dayDisplay.appendChild(conditionImg);
 
     // Uses the unit parameter to determine imperial or metric system.
     const maxTemp = document.createElement("p");
@@ -42,5 +41,4 @@ function buildFutureDay(data, unit, entryPoint) {
     dayDisplay.appendChild(minTemp);
 
     entryPoint.appendChild(dayDisplay);
-
 }
