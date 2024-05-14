@@ -38,6 +38,9 @@ async function getWeather() {
             `https://api.weatherapi.com/v1/forecast.json?key=5cd47542065f4defbfc174337241004&q=${location}&aqi=no&days=3`,
             { mode: "cors" }
         );
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         buildDaily(data, tempUnit); // Update the daily weather display
         buildForecast(data, tempUnit); // Update the forecast display
@@ -53,3 +56,5 @@ function activateUnitConvert() {
     fahrenheitInput.addEventListener("click", getWeather);
     celsiusInput.addEventListener("click", getWeather);
 }
+
+
